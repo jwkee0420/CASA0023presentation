@@ -1,0 +1,5 @@
+﻿What For?,DATA,Resolution,Revisit time,Date Range
+NDSI and NDWI; LULC,Landsat 8,"30-meter resolution (Visible, NIR, SWIR)",16 days,Current
+GLOF Validation Data,Landsat 5 and 8,"30-meter resolution (Visible, NIR, SWIR)",16 days,"Landsat 5: 1984-2013, Landsat 8, 2013-present"
+Digital Elevation Model,MERIT DEM: (Multi-Error-Removed Improved-Terrain DEM),90-meter resolution,N/A,2018
+Settlement and infrastructure data,OSM,N/A,N/A,N/A
