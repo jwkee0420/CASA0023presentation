@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Project IGLOOS</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Integrated Glacier Lake Outburst Operating System" />
+    <script src="libs/header-attrs-2.28/header-attrs.js"></script>
+    <script src="libs/mark.js-8.11.1/mark.min.js"></script>
+    <link href="libs/xaringanExtra-search-0.0.1/search.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra-search-0.0.1/search.js"></script>
+    <script>window.addEventListener('load', function() { window.xeSearch = new RemarkSearch({"position":"bottom-left","caseSensitive":false,"showIcon":true,"autoSearch":true}) })</script>
+    <script src="libs/kePrint-0.0.1/kePrint.js"></script>
+    <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+    <link href="libs/panelset-0.3.0/panelset.css" rel="stylesheet" />
+    <script src="libs/panelset-0.3.0/panelset.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Project IGLOOS
+]
+.author[
+### Integrated Glacier Lake Outburst Operating System
+]
+.institute[
+### CASA0023 Group Project: Chris, DuanDuan, Idris, Jin, Stefan
+]
+.date[
+### 2025/03/25
+]
+
+---
+
+
+class: inverse, center, middle
+
+# Current policies and why current strategies are not enough 
+
+### Context &amp; Background
+
+---
+
+# Glacier Lake Outburst Floods
+
+One significant impact of climate change in Pakistan is its **rapidly melting glaciers**. Outside of both poles, Pakistan is the country with the highest number of glaciers in the world - it relies on glaciers for **water, hydropower, and agriculture**. There are significant populations living near glaciers - over 800,000 mountain villagers live within 15km of a glacier (Reuters, 2023) and these villages are exposed to the risk of **Glacier Lake Outburst Floods (GLOF)**. 
+
+.pull-left[
+
+- As a result of glacier melts, over **2420 lakes** in Pakistan have been formed, with **52 lakes at risk of GLOF** every 3-10 years. This number is likely to increase from continual melting.
+
+- It is a contributing factor to the 2022 flood that killed over **1700 people in Pakistan and caused over 40 billion USD in damages**. 
+
+]
+
+.pull-right[
+
+    &lt;img src="index_files/img/flood1.jpg" width="120%" /&gt;
+]
+
+---
+class: inverse, center, middle
+
+# Why Glacier Lake Outburst Floods? 
+
+
+---
+class: inverse, left, middle
+
+# 1. Fast and sudden with massive damages 
+
+# 2. Worsening quickly due to climate change 
+
+# 3. Localised but deadly 
+
+---
+
+# Current policies and strategies 
+
+.pull-left[
+While there are flood management policies in Pakistan under its national water policy plan which includes building new water storage, developing new flood procedures, and investing in flood forecasting systems, **there is a lack of policies or plans that specifically deal with flash floods or GLOFs.**
+
+There are also **many institutional silos in managing floods** (Aslam, 2017)
+
+NGOs like UNDP also works with the government and local communities to **develop competencies adapting to flood risks.** 
+]
+
+.pull-right[
+&lt;img src="index_files/img/instit.png" width="200%" /&gt;
+&lt;div style="display: flex; align-items: center;"&gt;
+  &lt;img src="index_files/img/app.jpg" style="width: 50%; margin-right: 15px;" /&gt;
+  &lt;p style="margin: 0; font-weight: bold; background-color: lightblue; padding: 5px; border-radius: 6px"&gt;Different organisations working with flood measures at different scales and holding different data&lt;/p&gt;
+&lt;/div&gt;
+]
+
+---
+
+# How can we help? 
+
+Problem statement: **"Fragmented coordination among institutions at different scales hampers effective GLOF risk management in Pakistan, increasing vulnerability of at-risk communities."**  
+
+- Lack of coordination between flood institutions especially prior to Monsoon/heatwave seasons; each institution has **their own data and plans but are not shared to form a comprehensive flood plan** 
+
+- This can lead to **missed opportunities for early intervention or incorrect risk assessments.**
+
+- UNDP work with local communities on the ground to install weather stations and carry out workshops to strengthen their resilience, but these are often **not integrated with the different flood institutions**, limiting its effectiveness in the case of GLOF where coordination is required.
+
+&lt;div style="display: flex; align-items: center;"&gt;
+  &lt;img src="index_files/img/logo3.png" style="width: 17.5%; margin-right: 15px;" /&gt;
+
+&lt;div class="pull-right" style="width: 80%;"&gt;
+  &lt;h3&gt;"Our aim is to provide an open- and crowd-sourced data platform which is shared across different stakeholders to coordinate the formation and execution of a GLOF preparation and response plan."&lt;/h3&gt;
+&lt;/div&gt;
+
+---
+class: inverse, center, middle
+
+# Methodology  
+
+### Data pipeline, outputs, and operational applications
+
+---
+class: center
+
+## Remote Sensing Solutions
+---- 
+**Our 3 phase programme:** 
+![slide2](index_files/img/2.jpg)
+
+---
+
+## Data Collection
+
+
+
+---
+
+## The Process
+
+
+
+.panelset[
+.panel[.panel-name[Overview]
+&lt;img src="index_files/img/3.jpg"
+     width="1000px" height="500"
+     style="position:center; right:10px; top:130px;"&gt;
+]
+.panel[.panel-name[Glacier Identification]
+.pull-left[
+Glacier mass changes drastically throughout the year, so we  calculate seasonal averages of Landsat images.
+- Employ digital elevation model to **differentiate terrain shadows from glaciers.** 
+
+- Implement **region-specific** Normalised Difference Water Index and Normalised Difference Snow Index to identify glacier lakes. 
+
+- Apply a region-specific Random forest classification model, using NDWI and NDSI, to ensure rivers, non-glacial lakes are not misclassified as glacier lakes.
+
+- Set up **auto-updates** for the inventory.
+]
+.pull-right[
+![looking](index_files/img/look.jpg)
+]
+]
+.panel[.panel-name[Hazard Index]
+.pull-left[
+Our GLOF Hazard Index considers:
+- **Slope angles using digital elevation models.**
+  - Rock and avalanche impact into a lake is more likely from any slope &gt;30° (Fischer et al., 2012).
+  - Downstream, if &gt;50% of  slope pixels are below the 35° typical angle of repose, the dam is considered unstable (Allen et al., 2016). 
+- **Lake area using polygon calculation.**  
+  - Used as a proxy for lake volume and depth.
+- **Watershed area upstream.**
+  - Larger watershed area increases the risk of runoff (Allen et al., 2016).
+]
+.pull-right[
+![pic2](index_files/img/bell.jpg)
+]
+]
+.panel[.panel-name[Danger Index]
+.pull-left[
+The GLOF Danger Index  quantifies the potential for loss of life, livelihood and infrastructure:
+- LULC and OSM data to identify **man-made structures and communities**
+  - Create a binary categorisation of each pixel for presence of infrastructure.
+- Modified single-flow model (MSF) for each lake to **determine impacted areas from GLOF event.**
+  - Uses digital elevation models to simulate flooding and predict how outburst waters would travel downstream.
+  - This model identifies the **precise villages, roads, and agricultural land in the flood’s path, ensuring targeted risk mapping.**
+]
+.pull-right[
+![pic](index_files/img/danger.jpg)
+]
+]
+.panel[.panel-name[Validation]
+.pull-left[
+
+Validating our model is key to providing our partners with data they can rely on. 
+
+Community feedback:
+- We conduct validation workshops with a range of communities to **ground-truth our data.** 
+  - This is especally useful for identifying informal settlements
+
+Validation against previous GLOF events:
+- We check our **model rankings against real events that have taken place**, so we can be confident in our predictions of the future.
+
+]
+.pull-right[
+![pic](index_files/img/check.jpg)
+]
+]
+]
+
+---
+
+## The Product
+
+.pull-left[
+
+A Google Earth Engine-based dashboard for real-time risk visualisation. Key features include:
+- An overlay of our GLOF-HI ™  and GLOF-DI ™ scores with **settlement, population and critical infrastructure data.**
+
+- Early warning notifications:
+  - **Seasonal updates to flag lakes transitioning to higher risk categories.**
+  - Infrastructure alerts for improved preparedness strategies. 
+  
+- Free and public access:
+  - Agencies and communities can access the dashboard via web or mobile, ensuring **transparency and preparedness.**
+
+]
+
+.pull-right[
+&lt;p style="font-size:13px;"&gt;UNOSAT S-1 Dashboard. Source: &lt;a href=" https://unitar.org/about/news-stories/news/unosat-flood-ai-dashboards-nepal-creation-one-stop-shop-real-time-evidence-based-decision-making" target="_blank"&gt;UNITAR&lt;/a&gt;&lt;/p&gt;
+
+![pic](index_files/img/dash.jpg)
+]
+
+
+---
+## Limitations
+
+We are transparent about the challenges we may face.
+
+.panelset[
+.panel[.panel-name[Gap in Knowledge]
+.pull-left[As our strategy aims to bridge gaps across various agencies, we plan to employ a **Unified Training Program**, to:
+- Teach agencies to interpret the dashboard and integrate it into a centralised disaster response workflow.
+- Highlight the importance of of standardised data workflows to reducing redundancy
+]
+.pull-right[
+&lt;p style="font-size:13px;"&gt;Stakeholder integration. Source: Allan and Rieu-Clarke, 2006.&lt;/p&gt;
+&lt;img src="index_files/img/flood.png" width="80%"&gt;
+]
+]
+
+.panel[.panel-name[Conflicts]
+.pull-left[Conflict zones and physical access:
+- Physical access limits in the Kashmir region limit ground truthing data.
+- To mitigate this, we employ **remote engagement with partner organizations**. 
+]
+.pull-right[
+&lt;p style="font-size:13px;"&gt;Kashmir conflict. Source: The Nation, 2022.&lt;/p&gt;
+&lt;img src="index_files/img/kashmir.jpg" width="80%"&gt;
+]
+]
+.panel[.panel-name[Language Barriers]
+.pull-left[Language and coordination barriers:
+- The region is home to **diverse communities and languages, complicating outreach.**
+- We therefore hire local interpreters and leverage partner networks to bridge communication gaps. 
+]
+.pull-right[
+&lt;p style="font-size:13px;"&gt;Pakistan Language. Source: Clear Global, 2023.&lt;/p&gt;
+&lt;img src="index_files/img/language.png" width="100%"&gt;
+]
+]]
+---
+class: inverse, center, middle
+
+# Implementation Timeline and Costs   
+
+---
+# References 
+
+Allan, A. and Rieu-Clarke, A., 2006. Legal and institutional aspects of integrated flood management. Obtained from https://www.researchgate.net/publication/44234926_Legal_and_institutional_aspects_of_integrated_flood_management
+
+Allen, S.K., Zhang, G., Wang, W., Yao, T. and Bolch, T., 2019. Potentially dangerous glacial lakes across the Tibetan Plateau revealed using a large-scale automated assessment approach. Science Bulletin, 64(7), pp.435-445.
+
+Aslam, M., 2018. Flood management current state, challenges and prospects in Pakistan: A review. Mehran University Research Journal of Engineering &amp; Technology, 37(2), pp.297-314.
+
+Clear Global, 2023. Language Map of Pakistan. Obtained from https://clearglobal.org/wp-content/uploads/2023/02/Pakistan-Map-2023.pdf 
+
+Fischer, L., Purves, R.S., Huggel, C., Noetzli, J. and Haeberli, W., 2012. On the influence of topographic, geological and cryospheric factors on rock avalanches and rockfalls in high-mountain areas. Natural Hazards and Earth System Sciences, 12(1), pp.241-254.
+
+Reuters, 2023. Mountain villages fight for future as melting glaciers threaten floods. Obtained from https://www.reuters.com/investigates/special-report/climate-un-pakistan-glaciers/
+---
+
+NASA, 2022. 2022 Pakistan Floods - August 27, 2021 vs. August 27, 2022 in Sindh. Obtained from https://commons.wikimedia.org/wiki/File:2022_Pakistan_Floods_-_August_27,_2021_vs._August_27,_2022_in_Sindh.jpg 
+
+UNITAR, n.d. UNOSAT Flood AI Dashboards for Nepal: the creation of a one-stop-shop for real-time evidence-based decision-making. Obtained from https://unitar.org/about/news-stories/news/unosat-flood-ai-dashboards-nepal-creation-one-stop-shop-real-time-evidence-based-decision-making
+
+The Nation, 2022. The Unresolved Kashmir Dispute. Obtained from https://www.nation.com.pk/10-Jun-2022/the-unresolved-kashmir-dispute
+
+
+---
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+<style>
+.logo {
+  background-image: url(index_files/img/logo1.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: absolute;
+  bottom: -0.3em;
+  left: -0.4em;
+  width: 110px;
+  height: 128px;
+  z-index: 0;
+}
+</style>
+
+<script>
+document
+  .querySelectorAll(
+    '.remark-slide-content' +
+    ':not(.title-slide)' +
+    // add additional classes to exclude here, e.g.
+    // ':not(.inverse)' +
+    ':not(.hide-logo)'
+  )
+  .forEach(el => {
+    el.innerHTML += '<div class="logo"></div>';
+  });
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
